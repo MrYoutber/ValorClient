@@ -1,10 +1,42 @@
-[20:42:00] [Client thread/INFO]: Setting user: Player93
-[20:42:00] [Client thread/INFO]: (Session ID is token:0:Player93)
-[20:42:02] [Client thread/INFO]: LWJGL Version: 2.9.1
-[20:42:03] [Client thread/INFO]: Reloading ResourceManager: Default
-[20:42:03] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[20:42:03] [Thread-5/INFO]: Initializing LWJGL OpenAL
-[20:42:03] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[20:42:04] [Thread-5/INFO]: OpenAL initialized.
-[20:42:04] [Sound Library Loader/INFO]: Sound engine started
-[20:42:07] [Client thread/INFO]: Created: 512x512 textures-atlas
+[00:21:34] [Client thread/INFO]: Setting user: Player234
+[00:21:34] [Client thread/INFO]: (Session ID is token:0:Player234)
+[00:21:36] [Client thread/INFO]: LWJGL Version: 2.9.1
+[00:21:37] [Client thread/INFO]: Reloading ResourceManager: Default
+[00:21:38] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[00:21:38] [Thread-5/INFO]: Initializing LWJGL OpenAL
+[00:21:38] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[00:21:38] [Thread-5/INFO]: OpenAL initialized.
+[00:21:38] [Sound Library Loader/INFO]: Sound engine started
+[00:21:41] [Client thread/INFO]: Created: 512x512 textures-atlas
+[00:21:59] [Server thread/INFO]: Starting integrated minecraft server version 1.8
+[00:21:59] [Server thread/INFO]: Generating keypair
+[00:21:59] [Server thread/INFO]: Preparing start region for level 0
+[00:22:00] [Server thread/INFO]: Preparing spawn area: 30%
+[00:22:01] [Server thread/INFO]: Preparing spawn area: 36%
+[00:22:02] [Server thread/INFO]: Preparing spawn area: 41%
+[00:22:03] [Server thread/INFO]: Preparing spawn area: 49%
+[00:22:04] [Server thread/INFO]: Preparing spawn area: 56%
+[00:22:05] [Server thread/INFO]: Preparing spawn area: 63%
+[00:22:07] [Server thread/INFO]: Preparing spawn area: 70%
+[00:22:08] [Server thread/INFO]: Preparing spawn area: 79%
+[00:22:09] [Server thread/INFO]: Preparing spawn area: 88%
+[00:22:10] [Server thread/INFO]: Preparing spawn area: 98%
+[00:22:10] [Server thread/INFO]: Changing view distance to 12, from 10
+[00:22:10] [Server thread/INFO]: Player234[local:E:bddd474e] logged in with entity id 278 at (262.5, 70.0, 250.5)
+[00:22:10] [Server thread/INFO]: Player234 joined the game
+[00:22:13] [Client thread/FATAL]: Reported exception thrown!
+net.minecraft.util.ReportedException: Ticking entity
+	at net.minecraft.world.World.updateEntities(World.java:1710) ~[bin/:?]
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:2195) ~[bin/:?]
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1105) ~[bin/:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:412) [bin/:?]
+	at net.minecraft.client.main.Main.main(Main.java:114) [bin/:?]
+	at Start.main(Start.java:11) [bin/:?]
+Caused by: java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()" because "m.toggled" is null
+	at valor.Client.onEvent(Client.java:27) ~[bin/:?]
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:158) ~[bin/:?]
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:149) ~[bin/:?]
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1885) ~[bin/:?]
+	at net.minecraft.world.World.updateEntity(World.java:1854) ~[bin/:?]
+	at net.minecraft.world.World.updateEntities(World.java:1703) ~[bin/:?]
+	... 5 more

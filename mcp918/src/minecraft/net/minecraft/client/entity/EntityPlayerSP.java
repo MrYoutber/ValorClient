@@ -51,6 +51,9 @@ import net.minecraft.util.MovementInput;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
+import valor.Client;
+import valor.events.EventType;
+import valor.events.listeners.EventUpdate;
 
 public class EntityPlayerSP extends AbstractClientPlayer
 {
@@ -150,6 +153,10 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
     public void func_175161_p()
     {
+    	EventUpdate e = new EventUpdate();
+    	e.setType(EventType.PRE);
+    	Client.onEvent(e);
+    	
         boolean var1 = this.isSprinting();
 
         if (var1 != this.field_175171_bO)

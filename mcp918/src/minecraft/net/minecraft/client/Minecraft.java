@@ -166,6 +166,8 @@ import net.minecraft.world.chunk.storage.AnvilSaveConverter;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
+import valor.Client;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
@@ -551,6 +553,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.effectRenderer = new EffectRenderer(this.theWorld, this.renderEngine);
         this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
+        
+        Client.startup();
 
         if (this.serverName != null)
         {
@@ -608,7 +612,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     private void func_175609_am() throws LWJGLException
     {
         Display.setResizable(true);
-        Display.setTitle("Minecraft 1.8");
+        Display.setTitle("Loading " + Client.name);
 
         try
         {
@@ -1918,6 +1922,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                     }
                     else
                     {
+                    	
+                    	Client.keyPress(var1);
+                    	
                         if (var1 == 1)
                         {
                             this.displayInGameMenu();
