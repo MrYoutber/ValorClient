@@ -10,8 +10,6 @@ import valor.modules.Module;
 
 public class ToggleSprintSneak extends Module {
 	
-	public Minecraft mc = Minecraft.getMinecraft();
-	
 	public ToggleSprintSneak() {
 		super("Toggle Sprint", Keyboard.KEY_LCONTROL, Category.MOVEMENT);
 	}

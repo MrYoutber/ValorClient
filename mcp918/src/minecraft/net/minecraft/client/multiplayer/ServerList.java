@@ -8,6 +8,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import valor.ServerDataFeatured;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +21,7 @@ public class ServerList
     private final Minecraft mc;
 
     /** List of ServerData instances. */
-    private final List servers = Lists.newArrayList();
+    private final List<ServerData> servers = Lists.newArrayList();
     private static final String __OBFID = "CL_00000891";
 
     public ServerList(Minecraft mcIn)
@@ -37,6 +39,7 @@ public class ServerList
         try
         {
             this.servers.clear();
+            loadFeaturedServers();
             NBTTagCompound var1 = CompressedStreamTools.read(new File(this.mc.mcDataDir, "servers.dat"));
 
             if (var1 == null)
@@ -57,7 +60,22 @@ public class ServerList
         }
     }
 
-    /**
+    private void loadFeaturedServers() {
+		this.addServerData(new ServerDataFeatured("DragonMC", "dragonmc.it"));
+	}
+    
+    public int getFeaturedServerCount() {
+    	int count = 0;
+    	for(ServerData sd : this.servers) {
+    		if(sd instanceof ServerDataFeatured) {
+    			count++;
+    		}
+    	}
+    	
+    	return count;
+    }
+
+	/**
      * Runs getNBTCompound on each ServerData instance, puts everything into a "servers" NBT list and writes it to
      * servers.dat.
      */
@@ -71,7 +89,9 @@ public class ServerList
             while (var2.hasNext())
             {
                 ServerData var3 = (ServerData)var2.next();
-                var1.appendTag(var3.getNBTCompound());
+                if(!(var3 instanceof ServerDataFeatured)) {
+                	var1.appendTag(var3.getNBTCompound());                	
+                }
             }
 
             NBTTagCompound var5 = new NBTTagCompound();

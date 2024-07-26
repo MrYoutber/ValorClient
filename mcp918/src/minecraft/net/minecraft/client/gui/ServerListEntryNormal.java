@@ -18,6 +18,8 @@ import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
+import valor.ServerDataFeatured;
+
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -75,6 +77,11 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
                     }
                 }
             });
+        }
+        
+        boolean isFeaturedServer = (field_148301_e instanceof ServerDataFeatured);
+        if (isFeaturedServer) {
+        	drawImg(x,y,false,ServerDataFeatured.STAR_ICON);
         }
 
         boolean var9 = this.field_148301_e.version > 47;
@@ -203,34 +210,42 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
                     Gui.drawModalRectWithCustomSizedTexture(x, y, 0.0F, 0.0F, 32, 32, 256.0F, 256.0F);
                 }
             }
+            
+            if (!isFeaturedServer) {
+            	if (this.field_148303_c.func_175392_a(this, slotIndex))
+                {
+                    if (var21 < 16 && var22 < 16)
+                    {
+                        Gui.drawModalRectWithCustomSizedTexture(x, y, 96.0F, 32.0F, 32, 32, 256.0F, 256.0F);
+                    }
+                    else
+                    {
+                        Gui.drawModalRectWithCustomSizedTexture(x, y, 96.0F, 0.0F, 32, 32, 256.0F, 256.0F);
+                    }
+                }
 
-            if (this.field_148303_c.func_175392_a(this, slotIndex))
-            {
-                if (var21 < 16 && var22 < 16)
+                if (this.field_148303_c.func_175394_b(this, slotIndex))
                 {
-                    Gui.drawModalRectWithCustomSizedTexture(x, y, 96.0F, 32.0F, 32, 32, 256.0F, 256.0F);
-                }
-                else
-                {
-                    Gui.drawModalRectWithCustomSizedTexture(x, y, 96.0F, 0.0F, 32, 32, 256.0F, 256.0F);
-                }
-            }
-
-            if (this.field_148303_c.func_175394_b(this, slotIndex))
-            {
-                if (var21 < 16 && var22 > 16)
-                {
-                    Gui.drawModalRectWithCustomSizedTexture(x, y, 64.0F, 32.0F, 32, 32, 256.0F, 256.0F);
-                }
-                else
-                {
-                    Gui.drawModalRectWithCustomSizedTexture(x, y, 64.0F, 0.0F, 32, 32, 256.0F, 256.0F);
+                    if (var21 < 16 && var22 > 16)
+                    {
+                        Gui.drawModalRectWithCustomSizedTexture(x, y, 64.0F, 32.0F, 32, 32, 256.0F, 256.0F);
+                    }
+                    else
+                    {
+                        Gui.drawModalRectWithCustomSizedTexture(x, y, 64.0F, 0.0F, 32, 32, 256.0F, 256.0F);
+                    }
                 }
             }
         }
     }
 
-    protected void func_178012_a(int p_178012_1_, int p_178012_2_, ResourceLocation p_178012_3_)
+    private void drawImg(int x, int y, boolean lower, ResourceLocation texture) {
+		this.field_148300_d.getTextureManager().bindTexture(texture);
+		Gui.drawModalRectWithCustomSizedTexture(x - 16, lower ? y + 16 : y, 0.0f, 0.0f, 16, 16, 16, 16);
+		
+	}
+
+	protected void func_178012_a(int p_178012_1_, int p_178012_2_, ResourceLocation p_178012_3_)
     {
         this.field_148300_d.getTextureManager().bindTexture(p_178012_3_);
         GlStateManager.enableBlend();
@@ -302,17 +317,19 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
                 this.field_148303_c.connectToSelected();
                 return true;
             }
-
-            if (p_148278_5_ < 16 && p_148278_6_ < 16 && this.field_148303_c.func_175392_a(this, p_148278_1_))
-            {
-                this.field_148303_c.func_175391_a(this, p_148278_1_, GuiScreen.isShiftKeyDown());
-                return true;
-            }
-
-            if (p_148278_5_ < 16 && p_148278_6_ > 16 && this.field_148303_c.func_175394_b(this, p_148278_1_))
-            {
-                this.field_148303_c.func_175393_b(this, p_148278_1_, GuiScreen.isShiftKeyDown());
-                return true;
+            
+            if(!(this.field_148303_c.getServerList().getServerData(p_148278_1_) instanceof ServerDataFeatured)) {
+            	if (p_148278_5_ < 16 && p_148278_6_ < 16 && this.field_148303_c.func_175392_a(this, p_148278_1_))
+            	{
+            		this.field_148303_c.func_175391_a(this, p_148278_1_, GuiScreen.isShiftKeyDown());
+            		return true;
+            	}
+            	
+            	if (p_148278_5_ < 16 && p_148278_6_ > 16 && this.field_148303_c.func_175394_b(this, p_148278_1_))
+            	{
+            		this.field_148303_c.func_175393_b(this, p_148278_1_, GuiScreen.isShiftKeyDown());
+            		return true;
+            	}
             }
         }
 

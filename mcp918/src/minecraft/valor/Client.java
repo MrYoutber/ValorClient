@@ -13,7 +13,7 @@ public class Client {
 	
 	public static String name = "Valor Client", version = "1";
 	public static CopyOnWriteArrayList<Module> modules = new CopyOnWriteArrayList<Module>();
-//	public static HUD hud = new HUD();
+	public static HUD hud = new HUD();
 	
 	public static void startup() {
 		System.out.println("Starting " + name + " - v" + version);

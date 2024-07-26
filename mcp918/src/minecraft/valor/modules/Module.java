@@ -6,7 +6,7 @@ import valor.events.Event;
 public class Module {
 
 	public String name;
-	public Boolean toggled;
+	public Boolean toggled = false;
 	public int keyCode;
 	public Category category;
 	public Minecraft mc = Minecraft.getMinecraft();
