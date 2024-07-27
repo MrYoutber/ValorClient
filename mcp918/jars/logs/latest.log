@@ -1,14 +1,19 @@
-[20:14:16] [Client thread/INFO]: Setting user: Player265
-[20:14:16] [Client thread/INFO]: (Session ID is token:0:Player265)
-[20:14:19] [Client thread/INFO]: LWJGL Version: 2.9.1
-[20:14:20] [Client thread/INFO]: Reloading ResourceManager: Default
-[20:14:20] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[20:14:20] [Thread-5/INFO]: Initializing LWJGL OpenAL
-[20:14:20] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[20:14:21] [Thread-5/INFO]: OpenAL initialized.
-[20:14:21] [Sound Library Loader/INFO]: Sound engine started
-[20:14:25] [Client thread/INFO]: Created: 512x512 textures-atlas
-[20:14:36] [Client thread/WARN]: Unable to start LAN server detection: Network interface not configured for IPv4
-[20:15:07] [Client thread/INFO]: Stopping!
-[20:15:07] [Client thread/INFO]: SoundSystem shutting down...
-[20:15:07] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[23:15:31] [Client thread/INFO]: Setting user: Player828
+[23:15:31] [Client thread/INFO]: (Session ID is token:0:Player828)
+[23:15:33] [Client thread/INFO]: LWJGL Version: 2.9.1
+[23:15:35] [Client thread/INFO]: Reloading ResourceManager: Default
+[23:15:36] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[23:15:36] [Thread-5/INFO]: Initializing LWJGL OpenAL
+[23:15:36] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[23:15:37] [Client thread/ERROR]: ########## GL ERROR ##########
+[23:15:37] [Client thread/ERROR]: @ Pre startup
+[23:15:37] [Client thread/ERROR]: 1286: Invalid framebuffer operation
+[23:15:40] [Client thread/INFO]: Created: 512x512 textures-atlas
+[23:15:40] [Thread-5/INFO]: OpenAL initialized.
+[23:15:40] [Sound Library Loader/INFO]: Sound engine started
+[23:15:41] [Client thread/ERROR]: ########## GL ERROR ##########
+[23:15:41] [Client thread/ERROR]: @ Post startup
+[23:15:41] [Client thread/ERROR]: 1286: Invalid framebuffer operation
+[23:16:07] [Client thread/INFO]: Stopping!
+[23:16:07] [Client thread/INFO]: SoundSystem shutting down...
+[23:16:08] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com

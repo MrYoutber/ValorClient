@@ -19,8 +19,8 @@ public class GlStateManager
     private static GlStateManager.ClearState clearState = new GlStateManager.ClearState((GlStateManager.SwitchTexGen)null);
     private static GlStateManager.StencilState stencilState = new GlStateManager.StencilState((GlStateManager.SwitchTexGen)null);
     private static GlStateManager.BooleanState normalizeState = new GlStateManager.BooleanState(2977);
-    private static int field_179162_o = 0;
-    private static GlStateManager.TextureState[] field_179174_p = new GlStateManager.TextureState[8];
+    public static int field_179162_o = 0;
+    public static GlStateManager.TextureState[] field_179174_p = new GlStateManager.TextureState[8];
     private static int field_179173_q = 7425;
     private static GlStateManager.BooleanState rescaleNormalState = new GlStateManager.BooleanState(32826);
     private static GlStateManager.ColorMask colorMaskState = new GlStateManager.ColorMask((GlStateManager.SwitchTexGen)null);
@@ -357,6 +357,11 @@ public class GlStateManager
             field_179174_p[field_179162_o].field_179059_b = p_179144_0_;
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, p_179144_0_);
         }
+    }
+    
+    public static void enableTexture2D()
+    {
+    	field_179174_p[field_179162_o].field_179060_a.setEnabled();
     }
 
     public static void enableNormalize()
@@ -944,7 +949,7 @@ public class GlStateManager
         }
     }
 
-    static class TextureState
+    public static class TextureState
     {
         public GlStateManager.BooleanState field_179060_a;
         public int field_179059_b;

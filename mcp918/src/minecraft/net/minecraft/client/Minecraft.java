@@ -167,6 +167,8 @@ import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
 import valor.Client;
+import valor.DiscordClient;
+import valor.gui.SplashProgress;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
@@ -457,6 +459,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
      */
     private void startGame() throws LWJGLException
     {
+    	DiscordClient.getInstance().init();
         this.gameSettings = new GameSettings(this, this.mcDataDir);
         this.defaultResourcePacks.add(this.mcDefaultResourcePack);
         this.startTimerHackThread();
@@ -482,7 +485,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.refreshResources();
         this.renderEngine = new TextureManager(this.mcResourceManager);
         this.mcResourceManager.registerReloadListener(this.renderEngine);
-        this.func_180510_a(this.renderEngine);
+        //this.func_180510_a(this.renderEngine);
+        SplashProgress.drawSplash(getTextureManager());;
         this.func_175595_al();
         this.skinManager = new SkinManager(this.renderEngine, new File(this.fileAssets, "skins"), this.sessionService);
         this.saveLoader = new AnvilSaveConverter(new File(this.mcDataDir, "saves"));
@@ -536,15 +540,21 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.renderEngine.loadTickableTexture(TextureMap.locationBlocksTexture, this.textureMapBlocks);
         this.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
         this.textureMapBlocks.func_174937_a(false, this.gameSettings.mipmapLevels > 0);
+        SplashProgress.setProgress(2, "Minecraft - ModelManager");
         this.modelManager = new ModelManager(this.textureMapBlocks);
         this.mcResourceManager.registerReloadListener(this.modelManager);
         this.renderItem = new RenderItem(this.renderEngine, this.modelManager);
+        SplashProgress.setProgress(3, "Minecraft - RenderItem");
         this.renderManager = new RenderManager(this.renderEngine, this.renderItem);
+        SplashProgress.setProgress(4, "Minecraft - RenderManager");
         this.itemRenderer = new ItemRenderer(this);
+        SplashProgress.setProgress(5, "Minecraft - ItemRenderer");
         this.mcResourceManager.registerReloadListener(this.renderItem);
         this.entityRenderer = new EntityRenderer(this, this.mcResourceManager);
+        SplashProgress.setProgress(6, "Minecraft - EntityRenderer");
         this.mcResourceManager.registerReloadListener(this.entityRenderer);
         this.field_175618_aM = new BlockRendererDispatcher(this.modelManager.getBlockModelShapes(), this.gameSettings);
+        SplashProgress.setProgress(7, "Minecraft - BlockRendererDispatcher");
         this.mcResourceManager.registerReloadListener(this.field_175618_aM);
         this.renderGlobal = new RenderGlobal(this);
         this.mcResourceManager.registerReloadListener(this.renderGlobal);
@@ -1035,6 +1045,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     {
         try
         {
+        	DiscordClient.getInstance().shutdown();
             this.stream.shutdownStream();
             logger.info("Stopping!");
 
@@ -2322,6 +2333,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         var12.sendPacket(new C00Handshake(47, var11.toString(), 0, EnumConnectionState.LOGIN));
         var12.sendPacket(new C00PacketLoginStart(this.getSession().getProfile()));
         this.myNetworkManager = var12;
+        DiscordClient.getInstance().getDiscordRP().update("Playing Singleplayer", "In Game");
     }
 
     /**

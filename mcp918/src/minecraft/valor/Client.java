@@ -5,6 +5,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.lwjgl.opengl.Display;
 
 import valor.events.Event;
+import valor.gui.SplashProgress;
 import valor.modules.Module;
 import valor.modules.movement.ToggleSprintSneak;
 import valor.ui.HUD;
@@ -20,6 +21,8 @@ public class Client {
 		Display.setTitle(name + " v" + version);
 		
 		modules.add(new ToggleSprintSneak());
+		
+		SplashProgress.setProgress(1, "Valor - Initializing Discord Rich Presence!");
 	}
 	
 	public static void onEvent(Event e) {
