@@ -177,7 +177,9 @@ public class GameSettings
     public String language;
     public boolean forceUnicodeFont;
     private static final String __OBFID = "CL_00000650";
-
+    
+    public KeyBinding CLIENT_GUI_MOD_POS = new KeyBinding("Mod Positioning", Keyboard.KEY_T, "Valor Client");
+    
     public GameSettings(Minecraft mcIn, File p_i46326_2_)
     {
         this.chatVisibility = EntityPlayer.EnumChatVisibility.FULL;
@@ -256,7 +258,10 @@ public class GameSettings
 
         this.renderDistanceChunks = mcIn.isJava64bit() ? 12 : 8;
         this.loadOptions();
+        addClientKeybinds();
     }
+    
+    
 
     public GameSettings()
     {
@@ -322,6 +327,11 @@ public class GameSettings
         this.fovSetting = 70.0F;
         this.language = "en_US";
         this.forceUnicodeFont = false;
+        addClientKeybinds();
+    }
+    
+    private void addClientKeybinds() {
+    	this.keyBindings = ((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_GUI_MOD_POS));
     }
 
     /**

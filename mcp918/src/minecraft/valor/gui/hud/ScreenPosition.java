@@ -43,12 +43,12 @@ public class ScreenPosition {
 		return y;
 	}
 	
-	private void setRelative(double x, double y) {
+	public void setRelative(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
 
-	private void setAbsolute(int x, int y) {
+	public void setAbsolute(int x, int y) {
 		ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 		
 		this.x = (double) x / res.getScaledWidth();

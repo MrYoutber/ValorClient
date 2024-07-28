@@ -1,6 +1,6 @@
 package valor.gui.hud;
 
-public interface IRender extends IRenderConfig {
+public interface IRenderer extends IRenderConfig {
 
 	int getWidth();
 	int getHeight();
@@ -9,6 +9,10 @@ public interface IRender extends IRenderConfig {
 	
 	default void renderDummy(ScreenPosition pos) {
 		render(pos);
+	}
+	
+	public default boolean isEnabled() {
+		return true;
 	}
 	
 }

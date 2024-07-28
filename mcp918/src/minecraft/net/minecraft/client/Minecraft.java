@@ -565,7 +565,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
         
-        Client.startup();
+        Client.getInstance().startup();
 
         if (this.serverName != null)
         {
@@ -596,6 +596,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
 
         this.renderGlobal.func_174966_b();
+        Client.getInstance().start();
     }
 
     private void func_175608_ak()
