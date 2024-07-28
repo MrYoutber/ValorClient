@@ -34,46 +34,65 @@ public class SplashProgress {
 	}
 	
 	public static void drawSplash(TextureManager tm) {
-		
-		ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft(), 0, 0);
-		int scaleFactor = scaledResolution.getScaleFactor();
-		
-		Framebuffer framebuffer = new Framebuffer(scaledResolution.getScaledWidth() * scaleFactor, scaledResolution.getScaledHeight() * scaleFactor, true);
-		System.out.println("framebuffer 1");
-		framebuffer.bindFramebuffer(false);
-		
-		GlStateManager.matrixMode(GL11.GL_PROJECTION);
-		GlStateManager.loadIdentity();
-		GlStateManager.ortho(0.0D, (double)scaledResolution.getScaledWidth(), (double)scaledResolution.getScaledHeight(), 0.0D, 1000.0D, 3000.0D);
-		GlStateManager.matrixMode(GL11.GL_MODELVIEW);
-		GlStateManager.translate(0.0F, 0.0F, -2000.0F);
-		GlStateManager.disableLighting();
-		GlStateManager.disableFog();
-		GlStateManager.disableDepth();
-		GlStateManager.enableTexture2D();
-		
-		if (splash == null) {
-			splash = new ResourceLocation("valor/splash.png");
-		}
-		
-		tm.bindTexture(splash);
-		
-		GlStateManager.func_179117_G(); // reset color
-		GlStateManager.color(1.0f, 1.0f, 1.0f);
-		
-		Gui.drawScaledCustomSizeModalRect(0, 0, 0, 0, 1920, 1080, scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight(), 1920, 1080);
-		drawProgress();
-		System.out.println("framebuffer 2");
-		framebuffer.unbindFramebuffer();
-		System.out.println("framebuffer 3");
-		framebuffer.framebufferRender(scaledResolution.getScaledWidth() * scaleFactor, scaledResolution.getScaledHeight() * scaleFactor);
-		
-		GlStateManager.enableAlpha();
-		GlStateManager.alphaFunc(516, 0.1F);
-		
-		Minecraft.getMinecraft().func_175601_h(); // updateDisplay();
-		
+	    Minecraft mc = Minecraft.getMinecraft();
+	    int displayWidth = mc.displayWidth;
+	    int displayHeight = mc.displayHeight;
+	    ScaledResolution scaledResolution = new ScaledResolution(mc, displayWidth, displayHeight);
+	    int scaleFactor = scaledResolution.getScaleFactor();
+
+	    Framebuffer framebuffer = new Framebuffer(
+	        scaledResolution.getScaledWidth() * scaleFactor, 
+	        scaledResolution.getScaledHeight() * scaleFactor, 
+	        true
+	    );
+
+	    framebuffer.bindFramebuffer(false);
+
+	    GlStateManager.matrixMode(GL11.GL_PROJECTION);
+	    GlStateManager.loadIdentity();
+	    GlStateManager.ortho(0.0D, (double)scaledResolution.getScaledWidth(), (double)scaledResolution.getScaledHeight(), 0.0D, 1000.0D, 3000.0D);
+	    GlStateManager.matrixMode(GL11.GL_MODELVIEW);
+	    GlStateManager.loadIdentity();
+	    GlStateManager.translate(0.0F, 0.0F, -2000.0F);
+	    GlStateManager.disableLighting();
+	    GlStateManager.disableFog();
+	    GlStateManager.disableDepth();
+	    GlStateManager.enableTexture2D();
+
+	    if (splash == null) {
+	        splash = new ResourceLocation("valor/splash.png");
+	    }
+
+	    tm.bindTexture(splash);
+	    
+	    // Debug print to ensure the texture is bound
+	    System.out.println("Binding texture: " + splash);
+
+	    GlStateManager.func_179117_G(); // reset color
+	    GlStateManager.color(1.0f, 1.0f, 1.0f);
+
+	    Gui.drawScaledCustomSizeModalRect(
+	        0, 0, 0, 0, 
+	        1920, 1080, 
+	        scaledResolution.getScaledWidth(), 
+	        scaledResolution.getScaledHeight(), 
+	        1920, 1080
+	    );
+
+	    drawProgress();
+
+	    framebuffer.unbindFramebuffer();
+	    framebuffer.framebufferRender(
+	        scaledResolution.getScaledWidth() * scaleFactor, 
+	        scaledResolution.getScaledHeight() * scaleFactor
+	    );
+
+	    GlStateManager.enableAlpha();
+	    GlStateManager.alphaFunc(516, 0.1F);
+
+	    mc.func_175601_h(); // updateDisplay();
 	}
+
 	
 	private static void drawProgress() {
 		if(Minecraft.getMinecraft().gameSettings == null || Minecraft.getMinecraft().getTextureManager() == null) {
@@ -84,7 +103,9 @@ public class SplashProgress {
 			ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
 		}
 		
-		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), 0, 0);
+		int displayWidth = Minecraft.getMinecraft().displayWidth;
+	    int displayHeight = Minecraft.getMinecraft().displayHeight;
+		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), displayWidth, displayHeight);
 		
 		double nProgress = (double)PROGRESS;
 		double calc = (nProgress / MAX) * sr.getScaledWidth();

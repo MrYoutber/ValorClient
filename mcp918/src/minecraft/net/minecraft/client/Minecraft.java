@@ -486,7 +486,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.renderEngine = new TextureManager(this.mcResourceManager);
         this.mcResourceManager.registerReloadListener(this.renderEngine);
         //this.func_180510_a(this.renderEngine);
-        SplashProgress.drawSplash(getTextureManager());;
+        SplashProgress.drawSplash(getTextureManager());
         this.func_175595_al();
         this.skinManager = new SkinManager(this.renderEngine, new File(this.fileAssets, "skins"), this.sessionService);
         this.saveLoader = new AnvilSaveConverter(new File(this.mcDataDir, "saves"));
