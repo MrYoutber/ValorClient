@@ -1,3 +1,4 @@
-jars
-mcp910
-/mcp918/eclipse
+mcp918/*
+!mcp918/src
+!mcp918/.gitignore
+mcp910/*

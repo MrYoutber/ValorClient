@@ -343,8 +343,6 @@ public class GuiIngame extends Gui
         {
             this.overlayPlayerList.func_175246_a(false);
         }
-        
-        Client.hud.draw();
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();

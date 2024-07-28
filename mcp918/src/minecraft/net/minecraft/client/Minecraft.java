@@ -168,6 +168,7 @@ import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
 import valor.Client;
 import valor.DiscordClient;
+import valor.events.impl.ClientTickEvent;
 import valor.gui.SplashProgress;
 
 import org.apache.commons.io.IOUtils;
@@ -1933,9 +1934,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                     }
                     else
                     {
-                    	
-                    	Client.keyPress(var1);
-                    	
                         if (var1 == 1)
                         {
                             this.displayInGameMenu();
@@ -2260,6 +2258,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.mcProfiler.endStartSection("pendingConnection");
             this.myNetworkManager.processReceivedPackets();
         }
+        
+        new ClientTickEvent().call();
 
         this.mcProfiler.endSection();
         this.systemTime = getSystemTime();
