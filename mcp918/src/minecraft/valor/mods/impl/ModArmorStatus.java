@@ -20,7 +20,7 @@ public class ModArmorStatus extends ModDraggable {
 
     @Override
     public int getHeight() {
-        return 64;
+        return 80;
     }
 
     @Override
@@ -29,6 +29,30 @@ public class ModArmorStatus extends ModDraggable {
             ItemStack itemStack = mc.thePlayer.inventory.armorInventory[i];
             renderItemStack(pos, i, itemStack);
         }
+
+        ItemStack handItem = mc.thePlayer.getHeldItem();
+        if (handItem == null) return;
+        int itemAmount = handItem.stackSize;
+
+        // Render the item first
+        renderItemStack(pos, -1, handItem);
+
+        // Now render the text above the item (in terms of rendering layers)
+        if (itemAmount != 1) {
+            int itemX = pos.getAbsoluteX() - 1;
+            int itemY = pos.getAbsoluteY() + 80 - 7;
+            
+            // Disable depth testing and enable blending to ensure the text is rendered above the item
+            GL11.glDisable(GL11.GL_DEPTH_TEST);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+            font.drawString(String.valueOf(itemAmount), itemX + 7, itemY, -1);
+
+            // Re-enable depth testing
+            GL11.glEnable(GL11.GL_DEPTH_TEST);
+        }
+
     }
     
     @Override
@@ -47,7 +71,7 @@ public class ModArmorStatus extends ModDraggable {
         
         GL11.glPushMatrix();
         
-        int yAdd = (-16 * i) + 48;
+        int yAdd = (-16 * (i + 1)) + 64;
 
         RenderHelper.enableGUIStandardItemLighting();
         mc.getRenderItem().func_180450_b(is, pos.getAbsoluteX(), pos.getAbsoluteY() + yAdd); // renderItemAndEffectIntoGUI();

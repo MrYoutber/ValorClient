@@ -3323,4 +3323,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             }
         }
     }
+
+	public static int getDebugFPS() {
+		return debugFPS;
+	}
 }
