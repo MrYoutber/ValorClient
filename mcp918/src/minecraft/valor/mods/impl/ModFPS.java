@@ -21,10 +21,12 @@ public class ModFPS extends ModDraggable {
 		return font.FONT_HEIGHT;
 	}
 
+	@Override
 	public int getOffsetX() {
 		return offsetX;
 	}
 
+	@Override
 	public int getOffsetY() {
 		return offsetY;
 	}

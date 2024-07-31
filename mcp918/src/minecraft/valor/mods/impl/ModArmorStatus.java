@@ -116,4 +116,16 @@ public class ModArmorStatus extends ModDraggable {
 		GL11.glEnd();
 	}
 
+	@Override
+	public int getOffsetX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getOffsetY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

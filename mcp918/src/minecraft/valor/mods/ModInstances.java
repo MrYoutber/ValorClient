@@ -4,13 +4,11 @@ import valor.gui.hud.HUDManager;
 import valor.mods.impl.ModArmorStatus;
 import valor.mods.impl.ModCPS;
 import valor.mods.impl.ModFPS;
-import valor.mods.impl.ModHelloWorld;
 import valor.mods.impl.ModKeystrokes;
 import valor.mods.impl.ModToggleSprint;
+import valor.mods.impl.ModXYZ;
 
 public class ModInstances {
-
-	private static ModHelloWorld modHelloWorld;
 
 	private static ModArmorStatus modArmorStatus;
 
@@ -22,10 +20,9 @@ public class ModInstances {
 
 	private static ModKeystrokes modKeystrokes;
 
-	public static void register(HUDManager api) {
-		modHelloWorld = new ModHelloWorld();
-		api.register(modHelloWorld);
+	private static ModXYZ modXYZ;
 
+	public static void register(HUDManager api) {
 		modArmorStatus = new ModArmorStatus();
 		api.register(modArmorStatus);
 
@@ -40,10 +37,9 @@ public class ModInstances {
 
 		modKeystrokes = new ModKeystrokes();
 		api.register(modKeystrokes);
-	}
 
-	public static ModHelloWorld getModHelloWorld() {
-		return modHelloWorld;
+		modXYZ = new ModXYZ();
+		api.register(modXYZ);
 	}
 
 }
