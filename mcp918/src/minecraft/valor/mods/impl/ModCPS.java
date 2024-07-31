@@ -21,7 +21,7 @@ public class ModCPS extends ModDraggable {
 
 	@Override
 	public int getWidth() {
-		return font.getStringWidth("CPS: 00");
+		return font.getStringWidth("CPS: " + getCPS());
 	}
 
 	@Override

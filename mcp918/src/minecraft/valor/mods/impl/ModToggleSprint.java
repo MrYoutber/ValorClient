@@ -18,7 +18,7 @@ public class ModToggleSprint extends ModDraggable {
 
 	@Override
 	public int getWidth() {
-		return font.getStringWidth(isToggled ? "Sprinting (toggled)" : "Sprinting (vanilla)") + 5;
+		return font.getStringWidth(isToggled ? "Sprinting (toggled)" : "Sprinting (vanilla)");
 	}
 
 	@Override

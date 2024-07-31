@@ -12,7 +12,7 @@ public class ModArmorStatus extends ModDraggable {
 
 	@Override
 	public int getWidth() {
-		return 64;
+		return 16;
 	}
 
 	@Override
@@ -60,6 +60,7 @@ public class ModArmorStatus extends ModDraggable {
 		renderItemStack(pos, 2, new ItemStack(Items.diamond_chestplate));
 		renderItemStack(pos, 1, new ItemStack(Items.diamond_leggings));
 		renderItemStack(pos, 0, new ItemStack(Items.diamond_boots));
+		renderItemStack(pos, -1, new ItemStack(Items.diamond_sword));
 	}
 
 	private void renderItemStack(ScreenPosition pos, int i, ItemStack is) {

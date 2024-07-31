@@ -13,7 +13,7 @@ public class ModFPS extends ModDraggable {
 
 	@Override
 	public int getWidth() {
-		return font.getStringWidth("000 FPS");
+		return font.getStringWidth(mc.getDebugFPS() + " FPS");
 	}
 
 	@Override
